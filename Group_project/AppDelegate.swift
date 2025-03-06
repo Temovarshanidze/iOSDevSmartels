@@ -2,7 +2,6 @@
 //  AppDelegate.swift
 //  Group_project
 //
-//  Created by ana rogava on 05.03.25.
 //
 
 import UIKit
