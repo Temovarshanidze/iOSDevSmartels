@@ -13,6 +13,7 @@ class Tab2ViewController: UIViewController {
     private let resultLabel = UILabel()
     private let  errorlabel = UILabel()
     private let switcher = UISwitch()
+    private let tabBar = UITabBar()
     private var resultButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("check result for", for: .normal)
@@ -33,6 +34,7 @@ class Tab2ViewController: UIViewController {
         // checkInputs()
         //actionResultButton()
         addswitcher()
+        addTabBar() 
     }
     private  func addTextFields() {
         view.addSubview(numberOneTextField)
@@ -112,7 +114,7 @@ class Tab2ViewController: UIViewController {
      }
      }
      } */
-    func addswitcher(){
+   private func addswitcher(){
         switcher.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(switcher)
         NSLayoutConstraint.activate([
@@ -158,8 +160,6 @@ class Tab2ViewController: UIViewController {
                     self.resultLabel.text?.append("\(x)")
                 }
             }else {
-                
-                
                 errorlabel.text = "Please enter  number"
                 view.addSubview(errorlabel)
                 errorlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -175,36 +175,30 @@ class Tab2ViewController: UIViewController {
             if let input = numberThwoTextField.text, let input2 = numberOneTextField.text {
                 if let _ = Int(input), let _ = Int(input2) {
                     errorlabel.removeFromSuperview( )
-                    
                 }
             }
         }
     }
     
     func addSwichActionOff(){
-        //  resultLabel.text = "Greatest Common Divisor is : "
+       // resultLabel.text = "Least Common Multiple is"
         if let input = numberOneTextField.text, let input2 = numberThwoTextField.text,
            let result = Int(input), let result2 = Int(input2) {
-            
             if result2 == 0 {
                 resultLabel.text = "Cannot be divided by 0"
             } else {
                 var x = result
                 var y = result2
-                
                 // Greatest Common Divisor (GCD) calculation
                 while y != 0 {
                     (x, y) = (y, x % y)
                 }
-                
                 // Least Common Multiple (LCM) calculation
                 let lcm = (result * result2) / x
                 resultLabel.text = "Least Common Multiple is: \(lcm)"
             }
             
         }else {
-            
-            
             errorlabel.text = "Please enter  number"
             view.addSubview(errorlabel)
             errorlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -219,10 +213,18 @@ class Tab2ViewController: UIViewController {
         }
         if let input = numberThwoTextField.text, let input2 = numberOneTextField.text {
             if let _ = Int(input), let _ = Int(input2) {
-                errorlabel.removeFromSuperview( )
+                errorlabel.removeFromSuperview()
                 
             }
         }
+    }
+  private func addTabBar() {
+      tabBar.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(tabBar)
+      NSLayoutConstraint.activate([
+        tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
 }
 
